@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="stepdefinition.testcase2_price">
+        <methods>
+          <include name="closebrowser"/>
+          <include name="the_user_edits_the_price_range_from_maximum_and_minimum_limit"/>
+          <include name="launchbrowser"/>
+        </methods>
+      </class> <!-- stepdefinition.testcase2_price -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
