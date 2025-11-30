@@ -14,23 +14,7 @@ public class reporter {
 	public static ExtentReports extent;
 	public static ExtentTest logger;
 	
-//	@AfterMethod
-//	public void getresult(ITestResult result)
-//	{
-//		if(result.getStatus()==ITestResult.SUCCESS)
-//		{
-//			logger.log(LogStatus.PASS,"Test is passed");
-//		}
-//		else if(result.getStatus()==ITestResult.FAILURE)
-//		{
-//			logger.log(LogStatus.FAIL,"Test is Failed");
-//		}
-//		else if(result.getStatus()==ITestResult.SKIP)
-//		{
-//			logger.log(LogStatus.SKIP,"Test is Skipped");
-//		}
-//		extent.endTest(logger);
-//	}
+
 	
  
   

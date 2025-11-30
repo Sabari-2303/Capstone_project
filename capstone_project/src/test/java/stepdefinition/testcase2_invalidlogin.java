@@ -59,6 +59,7 @@ public class testcase2_invalidlogin extends reporter{
 		         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
 		         Allure.step("content");
 		     } catch (IOException e1) {
+		    	 Allure.addAttachment("content",e1.getMessage());
 		         e1.printStackTrace();
 		     }
 
@@ -71,6 +72,7 @@ public class testcase2_invalidlogin extends reporter{
 		         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
 		         Allure.step("content");
 		     } catch (IOException e1) {
+		    	 Allure.addAttachment("content",e1.getMessage());
 		         e1.printStackTrace();
 		     }
 
