@@ -6,16 +6,19 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class speakerpage {
 	WebDriver driver;
+	Actions actions;
 	public speakerpage(WebDriver driver)
 	{
 		this.driver=driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		this.actions = new Actions(driver);
 	}
 	public void selectManufacturer(String Maunufacturer)
 	{
@@ -69,17 +72,7 @@ public class speakerpage {
 	     return false;
 
 	 }
-//	 public void setPriceFilter(String low, String high) {
-//	        driver.findElement(priceLowerInput).clear();
-//	        driver.findElement(priceLowerInput).sendKeys(low);
-//	        driver.findElement(priceUpperInput).clear();
-//	        driver.findElement(priceUpperInput).sendKeys(high);
-//	    }
-//
-//	    public boolean isLowerLimitValid(String low) {
-//	        return Integer.parseInt(low) <= 170;
-//	    }
-//	    
+
 	 public void applyBluetoothFilter(String bluetoothoption) {
 		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		    driver.findElement(By.id("speakersImg")).click();
@@ -98,6 +91,33 @@ public class speakerpage {
 	        return numberlist.size();
 		
 	        
+	    }
+	 
+
+//	    public void moveLowerHandle(int  Offsetvalue) {
+//	    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//			driver.findElement(By.id("speakersImg")).click();
+//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	        WebElement lowhandle = driver.findElement(By.cssSelector(".noUi-handle-lower"));
+//	        actions.dragAndDropBy(lowhandle, Offsetvalue,0).build().perform();
+//	    }
+//
+//	    
+//	    public void moveUpperHandle(int Offsetvalue) {
+//	    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//			driver.findElement(By.id("speakersImg")).click();
+//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	        WebElement uphandle = driver.findElement(By.cssSelector(".noUi-handle-upper"));
+//	        actions.dragAndDropBy(uphandle, Offsetvalue,0).build().perform();
+//	    }
+
+	   
+	    public String getLowerValue() {
+	        return driver.findElement(By.cssSelector("p.sliderSteps.left")).getText();
+	    }
+
+	    public String getUpperValue() {
+	        return driver.findElement(By.cssSelector("p.sliderSteps:not(.left)")).getText();
 	    }
 
 	 

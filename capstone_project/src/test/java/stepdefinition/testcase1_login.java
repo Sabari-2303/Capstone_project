@@ -19,6 +19,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
 import pageObject.loginpage;
 import utilities.reporter;
 import utilities.screenshot;
@@ -58,6 +59,7 @@ public class testcase1_login extends reporter{
 			     try {
 			         screenshot.bugScreenshot(driver);
 			         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
+			         Allure.step("content");
 			     } catch (IOException e1) {
 			         e1.printStackTrace();
 			     }
@@ -69,6 +71,8 @@ public class testcase1_login extends reporter{
 			     try {
 			         screenshot.bugScreenshot(driver);
 			         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
+			         Allure.step("content");
+			         
 			     } catch (IOException e1) {
 			         e1.printStackTrace();
 			     }

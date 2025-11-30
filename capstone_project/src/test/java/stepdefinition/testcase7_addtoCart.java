@@ -9,11 +9,12 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
 import pageObject.productpage;
 import utilities.reporter;
 import utilities.screenshot;
 
-public class testcase7_addtoCart {
+public class testcase7_addtoCart extends reporter{
 	WebDriver driver=hooks.driver;
 	productpage product2;
 	@Given("The user is in the Product page to add the products to the cart")
@@ -39,9 +40,12 @@ public class testcase7_addtoCart {
 	    {
 	        reporter.logger.log(LogStatus.PASS, "Test passed successfully");
 		     try {
+		    	 
 		         screenshot.bugScreenshot(driver);
 		         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
+		         Allure.step("content");
 		     } catch (IOException e1) {
+		    	 Allure.addAttachment("content",e1.getMessage());
 		         e1.printStackTrace();
 		     }
 
@@ -52,7 +56,9 @@ public class testcase7_addtoCart {
 		     try {
 		         screenshot.bugScreenshot(driver);
 		         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
+		         Allure.step("content");
 		     } catch (IOException e1) {
+		    	 Allure.addAttachment("content",e1.getMessage());
 		         e1.printStackTrace();
 		     }
 
