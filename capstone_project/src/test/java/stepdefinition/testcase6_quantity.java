@@ -1,5 +1,7 @@
 package stepdefinition;
 
+import static org.testng.Assert.assertEquals;
+
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -28,42 +30,26 @@ public class testcase6_quantity extends reporter{
 	    
 	}
 	@Then("The System adds the desired product {string} in the cart page")
-	public void the_system_adds_the_desired_product_in_the_cart_page(String quantity) {
+	public void the_system_adds_the_desired_product_in_the_cart_page(String quantity) throws IOException {
 		System.out.println("The System adds the desired product in the cart page");
 		reporter.logger=reporter.extent.startTest("Test");
 		boolean expected =true;
 		boolean actual=product1.setQuantity(quantity);
-		
-	     if(actual==expected)
-         {
-            reporter.logger.log(LogStatus.PASS, "Test passed successfully");
-	        try {
-	         screenshot.bugScreenshot(driver);
-	         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
-	         Allure.step("content");
-	        } catch (IOException e1) {
-	        	 Allure.addAttachment("content",e1.getMessage());
-	         e1.printStackTrace();
-	         }
-
-	      } 
-        else
-   	     {
-   	        reporter.logger.log(LogStatus.FAIL, "Test failed");
-	        try {
-	            screenshot.bugScreenshot(driver);
-	            reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
-	            Allure.step("content");
-	          } catch (IOException e1) {
-	        	  Allure.addAttachment("content",e1.getMessage());
-	           e1.printStackTrace();
-	         }
-
-	    
-	      } 
-    
-	 reporter.extent.endTest(reporter.logger);
-
-
-}
+        try {
+			
+	         assertEquals(actual, expected);
+		     screenshot.bugScreenshot(driver);
+		     reporter.logger.log(LogStatus.PASS, "test passed successfully");
+		     Allure.step("Valid login passed");
+	        }
+	    catch(AssertionError e) {
+		    screenshot.bugScreenshot(driver);
+	        reporter.logger.log(LogStatus.FAIL, "test failed");
+		    Allure.addAttachment("Valid login failed", e.getMessage());
+		    throw e;
+	    }
+	   finally {
+		reporter.extent.endTest(reporter.logger);
+        }
+	}
 }

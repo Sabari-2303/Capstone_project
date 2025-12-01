@@ -35,45 +35,29 @@ public class testcase3_bluetooth extends reporter{
 	    
 	}
 	@Then("The System displays the products contains {string} or not")
-	public void the_system_displays_the_products_contains_or_not(String bluetoothavailable) throws InterruptedException {
+	public void the_system_displays_the_products_contains_or_not(String bluetoothavailable) throws InterruptedException, IOException {
 		System.out.println("The syatem displays the product contains the bluetooth feature or not");
 		reporter.logger=reporter.extent.startTest("Test");
 		 int expected =0;
 		 int actual=speaker3.getNumbermanufacturerproducts(bluetoothavailable);
-	     if(actual==expected)
-	     {
-             reporter.logger.log(LogStatus.PASS, "Test passed successfully");
-		     try {
-		         screenshot.bugScreenshot(driver);
-		         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
-		         Allure.step("content");
-		     } catch (IOException e1) {
-		    	 Allure.addAttachment("content",e1.getMessage());
-		         e1.printStackTrace();
-		     }
 
-		 } 
-	     else
-	    	 {
-	    	 reporter.logger.log(LogStatus.FAIL, "Test failed");
-		     try {
-		         screenshot.bugScreenshot(driver);
-		         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
-		         Allure.step("content");
-		     } catch (IOException e1) {
-		    	 Allure.addAttachment("content",e1.getMessage());
-		         e1.printStackTrace();
-		     }
-
-		    
-		 } 
-	     
-		 reporter.extent.endTest(reporter.logger);
-//		 Thread.sleep(2000);
-//		 driver.quit();
 		 
-
-	    
-	}
+		 try {
+				
+	         assertEquals(actual, expected);
+		     screenshot.bugScreenshot(driver);
+		     reporter.logger.log(LogStatus.PASS, "test passed successfully");
+		     Allure.step("Valid login passed");
+	       }
+	    catch(AssertionError e) {
+		       screenshot.bugScreenshot(driver);
+	           reporter.logger.log(LogStatus.FAIL, "test failed");
+		       Allure.addAttachment("Valid login failed", e.getMessage());
+		       throw e;
+	     }
+	    finally {
+		reporter.extent.endTest(reporter.logger);
+        }
+}
 
 }

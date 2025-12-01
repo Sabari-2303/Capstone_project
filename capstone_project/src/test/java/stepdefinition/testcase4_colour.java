@@ -44,35 +44,29 @@ public class testcase4_colour extends reporter {
 	        reporter.logger=reporter.extent.startTest("Test");
 		    boolean expected =true;
 		    boolean actual=speaker2.checkColour(manufacturer, colour);
-		    if(actual==expected)
-		     {
-	             reporter.logger.log(LogStatus.PASS, "Test passed successfully");
-			     try {
-			         screenshot.bugScreenshot(driver);
-			         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
-			         Allure.step("content");
-			     } catch (IOException e1) {
-			    	 Allure.addAttachment("content",e1.getMessage());
-			         e1.printStackTrace();
-			     }
+            try {
+					
+		         assertEquals(actual, expected);
+			     screenshot.bugScreenshot(driver);
+			     reporter.logger.log(LogStatus.PASS, "test passed successfully");
+			     Allure.step("Valid login passed");
+		        }
+		  catch(AssertionError e) {
+			    screenshot.bugScreenshot(driver);
+		        reporter.logger.log(LogStatus.FAIL, "test failed");
+			    Allure.addAttachment("Valid login failed", e.getMessage());
+			    throw e;
+		    }
+		  finally {
+			reporter.extent.endTest(reporter.logger);
+	        
+	 
+			
+			 
 
-			 } 
-		     else
-		    	 {
-		    	 reporter.logger.log(LogStatus.FAIL, "Test failed");
-			     try {
-			         screenshot.bugScreenshot(driver);
-			         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
-			         Allure.step("content");
-			     } catch (IOException e1) {
-			    	 Allure.addAttachment("content",e1.getMessage());
-			         e1.printStackTrace();
-			     }
-
-			    
-			 } 
-		     
-			 reporter.extent.endTest(reporter.logger);
+		    
+		}
+	
 
 	   
 	}

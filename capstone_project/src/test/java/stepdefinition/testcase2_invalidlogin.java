@@ -46,42 +46,28 @@ public class testcase2_invalidlogin extends reporter{
 	   
 	
 	@Then("he should not be able to login to the Home page")
-	public void he_should_not_be_able_to_login_to_the_Home_page() throws InterruptedException {
+	public void he_should_not_be_able_to_login_to_the_Home_page() throws InterruptedException, IOException {
 	     System.out.println("The user should not be able to login to the Home page");
 	     reporter.logger=reporter.extent.startTest("Test");
 	 	 boolean expected =false;
 	 	 boolean actual=Loginpage2.isLoginFailed();
-	 	 if(actual==expected)
-	     {
-            reporter.logger.log(LogStatus.PASS, "Test passed successfully");
-		     try {
-		         screenshot.bugScreenshot(driver);
-		         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
-		         Allure.step("content");
-		     } catch (IOException e1) {
-		    	 Allure.addAttachment("content",e1.getMessage());
-		         e1.printStackTrace();
-		     }
 
-		 } 
-	     else
-	    	 {
-	    	 reporter.logger.log(LogStatus.FAIL, "Test failed");
-		     try {
-		         screenshot.bugScreenshot(driver);
-		         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
-		         Allure.step("content");
-		     } catch (IOException e1) {
-		    	 Allure.addAttachment("content",e1.getMessage());
-		         e1.printStackTrace();
-		     }
-
-		    
-		 } 
-	     
-		 reporter.extent.endTest(reporter.logger);
-
-	
+	 	  try {
+	 		
+	         assertEquals(actual, expected);
+		     screenshot.bugScreenshot(driver);
+		     reporter.logger.log(LogStatus.PASS, "test passed successfully");
+		     Allure.step("Valid login passed");
+	        }
+	      catch(AssertionError e) {
+		        screenshot.bugScreenshot(driver);
+	            reporter.logger.log(LogStatus.FAIL, "test failed");
+		        Allure.addAttachment("Valid login failed", e.getMessage());
+		        throw e;
+	      }
+	       finally {
+		       reporter.extent.endTest(reporter.logger);
+            }
     }
 
 }

@@ -39,41 +39,28 @@ public class testcase5_manufacturer extends reporter{
 
 	
 	@Then("The System displays the products of the {string}")
-	public void the_system_displays_the_products_of_the(String manufacturer) throws InterruptedException {
+	public void the_system_displays_the_products_of_the(String manufacturer) throws InterruptedException, IOException {
 		 System.out.println("The System displays the products of the Manufacturer");
 		    reporter.logger=reporter.extent.startTest("Test");
 			 int expected =4;
 			 int actual=speaker1.getNumbermanufacturerproducts(manufacturer);
-			 if(actual==expected)
-		     {
-	             reporter.logger.log(LogStatus.PASS, "Test passed successfully");
-			     try {
-			         screenshot.bugScreenshot(driver);
-			         reporter.logger.log(LogStatus.PASS, "Screenshot captured for Success");
-			         Allure.step("content");
-			     } catch (IOException e1) {
-			    	 Allure.addAttachment("content",e1.getMessage());
-			         e1.printStackTrace();
-			     }
-
-			 } 
-		     else
-		    	 {
-		    	 reporter.logger.log(LogStatus.FAIL, "Test failed");
-			     try {
-			         screenshot.bugScreenshot(driver);
-			         reporter.logger.log(LogStatus.FAIL, "Screenshot captured for Failure");
-			         Allure.step("content");
-			     } catch (IOException e1) {
-			    	 Allure.addAttachment("content",e1.getMessage());
-			         e1.printStackTrace();
-			     }
-
-			    
-			 } 
-		     
-			 reporter.extent.endTest(reporter.logger);
-
+             try {
+					
+		         assertEquals(actual, expected);
+			     screenshot.bugScreenshot(driver);
+			     reporter.logger.log(LogStatus.PASS, "test passed successfully");
+			     Allure.step("Valid login passed");
+		        }
+		     catch(AssertionError e) {
+			     screenshot.bugScreenshot(driver);
+		         reporter.logger.log(LogStatus.FAIL, "test failed");
+			     Allure.addAttachment("Valid login failed", e.getMessage());
+			     throw e;
+		       }
+		    finally {
+			    reporter.extent.endTest(reporter.logger);
+	        }
+	
 	}
 	    
 }
