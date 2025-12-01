@@ -17,7 +17,7 @@ public class screenshot {
 		    
 		    File scrFile;
 			scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			Files.copy(scrFile, new File("D:\\Selenium demo\\capstone_project\\Screenshots\\Steps"+i+ ".jpeg"));
+			Files.copy(scrFile, new File("C:\\Users\\Administrator\\git\\repository11\\capstone_project\\Screenshots\\Steps"+i+ ".jpeg"));
 			i++;
 	  }
 	
