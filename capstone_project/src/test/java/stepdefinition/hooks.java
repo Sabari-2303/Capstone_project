@@ -24,7 +24,7 @@ public class hooks {
 		
 	}
 	@AfterMethod
-	public void closeBrowser() throws InterruptedException
+	public static void closeBrowser() throws InterruptedException
 	{
 		Thread.sleep(2000);
 		driver.quit();
