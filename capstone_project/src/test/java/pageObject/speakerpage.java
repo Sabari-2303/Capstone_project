@@ -94,31 +94,6 @@ public class speakerpage {
 	    }
 	 
 
-//	    public void moveLowerHandle(int  Offsetvalue) {
-//	    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//			driver.findElement(By.id("speakersImg")).click();
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//	        WebElement lowhandle = driver.findElement(By.cssSelector(".noUi-handle-lower"));
-//	        actions.dragAndDropBy(lowhandle, Offsetvalue,0).build().perform();
-//	    }
-//
-//	    
-//	    public void moveUpperHandle(int Offsetvalue) {
-//	    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//			driver.findElement(By.id("speakersImg")).click();
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//	        WebElement uphandle = driver.findElement(By.cssSelector(".noUi-handle-upper"));
-//	        actions.dragAndDropBy(uphandle, Offsetvalue,0).build().perform();
-//	    }
-
-	   
-	    public String getLowerValue() {
-	        return driver.findElement(By.cssSelector("p.sliderSteps.left")).getText();
-	    }
-
-	    public String getUpperValue() {
-	        return driver.findElement(By.cssSelector("p.sliderSteps:not(.left)")).getText();
-	    }
 
 	 
 	

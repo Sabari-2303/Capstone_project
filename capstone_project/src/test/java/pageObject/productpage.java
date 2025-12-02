@@ -19,7 +19,7 @@ public class productpage {
 	
 	public void enterproduct(String product)
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.findElement(By.id("speakersImg")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement prod=driver.findElement(By.xpath("//a[@class='productName ng-binding' and contains(text(),'" + product + "')]"));
@@ -36,8 +36,8 @@ public class productpage {
 	public boolean addtocart()
 	{
 		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement bluetooth = wait1.until(ExpectedConditions.elementToBeClickable(By.name("save_to_cart")));
-        bluetooth.click();
+		WebElement addcart = wait1.until(ExpectedConditions.elementToBeClickable(By.name("save_to_cart")));
+        addcart.click();
         boolean checkout=driver.findElement(By.id("checkOutPopUp")).isEnabled();
         return checkout;
 	}
