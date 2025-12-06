@@ -20,7 +20,7 @@ public class reporter {
   
   @BeforeSuite
   public void beforeSuite() {
-	  extent=new ExtentReports("D:\\Selenium demo\\capstone_project\\Reports\\report.html",true);
+	  extent=new ExtentReports("C:\\Users\\Administrator\\git\\repository11\\capstone_project\\Reports\\report.html",true);
   }
   
 
