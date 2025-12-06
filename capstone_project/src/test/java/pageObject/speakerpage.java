@@ -23,7 +23,7 @@ public class speakerpage {
 	public void selectManufacturer(String Maunufacturer)
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.findElement(By.id("speakersImg")).click();
+		driver.findElement(By.cssSelector("#speakersImg")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement manufacturerAccordion = wait.until(ExpectedConditions.elementToBeClickable(By.id("accordionAttrib1")));
 		manufacturerAccordion.click();
@@ -46,7 +46,7 @@ public class speakerpage {
 	public void selectColour(String colour)
 	{
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.findElement(By.id("speakersImg")).click();
+		driver.findElement(By.cssSelector("#speakersImg")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement colouroption = wait.until(ExpectedConditions.elementToBeClickable(By.id("accordionColor")));
 	    colouroption.click();
@@ -75,7 +75,7 @@ public class speakerpage {
 
 	 public void applyBluetoothFilter(String bluetoothoption) {
 		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		    driver.findElement(By.id("speakersImg")).click();
+		    driver.findElement(By.cssSelector("#speakersImg")).click();
 			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 			WebElement bluetooth = wait.until(ExpectedConditions.elementToBeClickable(By.id("accordionAttrib3")));
 	        bluetooth.click();

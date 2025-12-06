@@ -23,7 +23,7 @@ public class hooks {
 		driver.get("https://www.advantageonlineshopping.com");
 		
 	}
-	@AfterMethod
+	@After
 	public static void closeBrowser() throws InterruptedException
 	{
 		Thread.sleep(2000);
